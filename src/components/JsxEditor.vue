@@ -8,7 +8,7 @@
             {{ version }},
             <a
               target="_blank"
-              href="https://github.com/sxzz/vue2-jsx-playground"
+              href="https://github.com/sxzz/vue-jsx-playground"
             >
               check out source code
             </a>
@@ -16,7 +16,8 @@
         </div>
         <div class="header-right">
           <select v-model="mode" class="form-control">
-            <option value="vue">Vue</option>
+            <option value="vue2">Vue 2</option>
+            <option value="vue3">Vue 3</option>
             <option value="react">React</option>
           </select>
         </div>
@@ -27,7 +28,7 @@
       <editor-window title="input" width="500px" style="margin: 0 20px">
         <code-mirror v-model="input" class="input" :options="editorOptions" />
       </editor-window>
-      <editor-window title="result" width="500px" style="margin: 0 20px">
+      <editor-window title="result" width="800px" style="margin: 0 20px">
         <div class="result">
           <pre class="code cm-s-default"><code v-html="result" /></pre>
           <div v-show="error" class="error">{{ error }}</div>
@@ -40,7 +41,8 @@
 <script lang="ts" setup>
 import { transform as babelTransform } from '@babel/standalone'
 // @ts-expect-error
-import vueJSXPreset from '@vue/babel-preset-jsx'
+import vue2JSXPreset from '@vue/babel-preset-jsx'
+import vue3JSXPlugin from '@vue/babel-plugin-jsx'
 // @ts-expect-error
 import { EditorWindow } from 'vue-windows'
 // @ts-expect-error
@@ -97,8 +99,10 @@ const transform = async () => {
       presets: [],
       plugins: [],
     }
-    if (mode.value === 'vue') {
-      transformOptions.presets!.push(vueJSXPreset)
+    if (mode.value === 'vue2') {
+      transformOptions.presets!.push(vue2JSXPreset)
+    } else if (mode.value === 'vue3') {
+      transformOptions.plugins!.push(vue3JSXPlugin)
     } else if (mode.value === 'react') {
       transformOptions.presets!.push('react')
     }
