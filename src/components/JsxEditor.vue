@@ -38,6 +38,9 @@
 </template>
 
 <script lang="ts" setup>
+import { transform as babelTransform } from '@babel/standalone'
+// @ts-expect-error
+import vueJSXPreset from '@vue/babel-preset-jsx'
 // @ts-expect-error
 import { EditorWindow } from 'vue-windows'
 // @ts-expect-error
@@ -49,7 +52,8 @@ import 'codemirror/mode/javascript/javascript'
 import 'codemirror/mode/jsx/jsx'
 import { version as BABEL_VERSION } from '@babel/standalone/package.json'
 import { version as VUE_JSX_VERSION } from '@vue/babel-preset-jsx/package.json'
-import { onMounted, ref, watch } from 'vue'
+import { ref, watch } from 'vue'
+import { atou, utoa } from '../utils/encode'
 import type { TransformOptions } from '@babel/core'
 
 import 'codemirror/lib/codemirror.css'
@@ -61,12 +65,14 @@ const defaultValue = `
 </div>
 `.trim()
 
-const input = useLocalStorage('input', ref('' /* input */ || defaultValue))
+const input = ref(defaultValue)
 const result = ref('Loading...')
 const error = ref('')
-const mode = ref<'vue' | 'react'>('vue')
-const version = `@babel/standalone@${BABEL_VERSION} & @vue/babel-preset-jsx@${VUE_JSX_VERSION}`
+const mode = useLocalStorage('mode', ref<'vue' | 'react'>('vue'), {
+  listenToStorageChanges: false,
+})
 
+const version = `@babel/standalone@${BABEL_VERSION} & @vue/babel-preset-jsx@${VUE_JSX_VERSION}`
 const editorOptions = {
   mode: 'jsx',
   tabSize: 2,
@@ -78,13 +84,15 @@ const editorOptions = {
   },
 }
 
+if (location.hash) {
+  input.value = atou(location.hash.slice(1))
+}
+if (!input.value) {
+  input.value = defaultValue
+}
+
 const transform = async () => {
   try {
-    const [babel, vueJSXPreset] = await Promise.all([
-      import('@babel/standalone'),
-      // @ts-expect-error
-      import('@vue/babel-preset-jsx').then((r) => r.default),
-    ])
     const transformOptions: TransformOptions = {
       presets: [],
       plugins: [],
@@ -94,7 +102,7 @@ const transform = async () => {
     } else if (mode.value === 'react') {
       transformOptions.presets!.push('react')
     }
-    const transformed = babel.transform(input.value, transformOptions)
+    const transformed = babelTransform(input.value, transformOptions)
     result.value = highlight(transformed.code, {
       mode: 'jsx',
     })
@@ -105,11 +113,14 @@ const transform = async () => {
   }
 }
 
-onMounted(() => {
-  transform()
-})
-
-watch([input, mode], () => transform())
+watch(
+  [input, mode],
+  () => {
+    transform()
+    location.hash = utoa(input.value)
+  },
+  { immediate: true }
+)
 </script>
 
 <style lang="scss">
