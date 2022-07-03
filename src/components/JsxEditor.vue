@@ -2,17 +2,20 @@
   <div class="h-full">
     <header class="header">
       <div class="header-container">
-        <div class="header-left">
-          <h1>JSX Live Editor</h1>
-          <h2>
-            {{ version }},
-            <a
-              target="_blank"
-              href="https://github.com/sxzz/vue-jsx-playground"
-            >
-              check out source code
-            </a>
-          </h2>
+        <div class="flex gap-2">
+          <img class="w-64px h-64px" src="../assets/logo.png" />
+          <div>
+            <h1>Vue JSX Playground</h1>
+            <h2>
+              {{ version }}.
+              <a
+                target="_blank"
+                href="https://github.com/sxzz/vue-jsx-playground"
+              >
+                repo
+              </a>
+            </h2>
+          </div>
         </div>
         <div class="header-right">
           <select v-model="mode" class="form-control">
@@ -53,7 +56,8 @@ import { useLocalStorage } from '@vueuse/core'
 import 'codemirror/mode/javascript/javascript'
 import 'codemirror/mode/jsx/jsx'
 import { version as BABEL_VERSION } from '@babel/standalone/package.json'
-import { version as VUE_JSX_VERSION } from '@vue/babel-preset-jsx/package.json'
+import { version as VUE2_JSX_VERSION } from '@vue/babel-preset-jsx/package.json'
+import { version as VUE3_JSX_VERSION } from '@vue/babel-plugin-jsx/package.json'
 import { ref, watch } from 'vue'
 import { atou, utoa } from '../utils/encode'
 import type { TransformOptions } from '@babel/core'
@@ -70,11 +74,11 @@ const defaultValue = `
 const input = ref(defaultValue)
 const result = ref('Loading...')
 const error = ref('')
-const mode = useLocalStorage('mode', ref<'vue' | 'react'>('vue'), {
+const mode = useLocalStorage('mode', ref<'vue2' | 'vue3' | 'react'>('vue3'), {
   listenToStorageChanges: false,
 })
 
-const version = `@babel/standalone@${BABEL_VERSION} & @vue/babel-preset-jsx@${VUE_JSX_VERSION}`
+const version = `@babel/standalone@${BABEL_VERSION} & @vue/babel-preset-jsx@${VUE2_JSX_VERSION} & @vue/babel-plugin-jsx@${VUE3_JSX_VERSION}`
 const editorOptions = {
   mode: 'jsx',
   tabSize: 2,
@@ -143,8 +147,10 @@ body,
 
 .header {
   height: 80px;
-  background-color: #4fc08d;
-  color: white;
+  background-color: #f9f9f9;
+  // color: white;
+  // border-bottom: 1px solid #111;
+
   > .header-container {
     display: flex;
     justify-content: space-between;
