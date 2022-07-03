@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite'
-import Vue2 from '@vitejs/plugin-vue2'
+import Vue from '@vitejs/plugin-vue'
 import Components from 'unplugin-vue-components/vite'
+import AutoImport from 'unplugin-auto-import/vite'
 import UnoCSS from 'unocss/vite'
 
 export default defineConfig({
@@ -14,9 +15,17 @@ export default defineConfig({
     'process.platform': '"darwin"',
   },
   plugins: [
-    Vue2(),
+    Vue({
+      reactivityTransform: true,
+    }),
     Components({
       dts: './src/components.d.ts',
+    }),
+    AutoImport({
+      imports: ['vue', '@vueuse/core'],
+      dirs: ['./src/composables'],
+      vueTemplate: true,
+      dts: './src/auto-imports.d.ts',
     }),
     UnoCSS(),
   ],

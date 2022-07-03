@@ -1,23 +1,13 @@
 <template>
-  <div id="app">
+  <main font-sans p="x-4 y-10" text="gray-700 dark:gray-200">
+    <app-header />
     <jsx-editor />
-  </div>
+    <app-footer />
+  </main>
 </template>
 
-<style lang="scss">
-body {
-  margin: 0;
-  padding: 0;
-}
-
-#app {
-  font: 14px/1.4 -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Helvetica Neue, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-* {
-  box-sizing: border-box;
+<style>
+html.dark {
+  color-scheme: dark;
 }
 </style>

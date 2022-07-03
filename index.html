@@ -10,8 +10,16 @@
   <script type="module" src="./src/main.ts"></script>
 </head>
 
-<body>
+<body class="font-sans dark:text-white dark:bg-hex-121212">
   <div id="app"></div>
+  <script>
+    (function () {
+      const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+      const setting = localStorage.getItem('color-schema') || 'auto'
+      if (setting === 'dark' || (prefersDark && setting !== 'light'))
+        document.documentElement.classList.toggle('dark', true)
+    })()
+  </script>
 </body>
 
 </html>
