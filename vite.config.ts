@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite'
 import Vue2 from '@vitejs/plugin-vue2'
 import Components from 'unplugin-vue-components/vite'
+import UnoCSS from 'unocss/vite'
 
 export default defineConfig({
   define: {
@@ -11,5 +12,6 @@ export default defineConfig({
     Components({
       dts: './src/components.d.ts',
     }),
+    UnoCSS(),
   ],
 })

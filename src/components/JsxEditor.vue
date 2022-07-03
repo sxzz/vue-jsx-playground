@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="h-full">
     <header class="header">
-      <div class="container">
+      <div class="header-container">
         <div class="header-left">
           <h1>JSX Live Editor</h1>
           <h2>
@@ -15,17 +15,10 @@
           </h2>
         </div>
         <div class="header-right">
-          <select
-            v-model="mode"
-            aria-label="Select JSX mode"
-            class="form-control"
-          >
+          <select v-model="mode" class="form-control">
             <option value="vue">Vue</option>
             <option value="react">React</option>
           </select>
-          <!-- <button class="form-control save-button" @click="saveGist">
-            Save as Gist
-          </button> -->
         </div>
       </div>
     </header>
@@ -45,8 +38,11 @@
 </template>
 
 <script lang="ts" setup>
+// @ts-expect-error
 import { EditorWindow } from 'vue-windows'
+// @ts-expect-error
 import highlight from 'cm-highlight'
+// @ts-expect-error
 import CodeMirror from 'vue-cm'
 import 'codemirror/mode/javascript/javascript'
 import 'codemirror/mode/jsx/jsx'
@@ -55,7 +51,6 @@ import { version as VUE_JSX_VERSION } from '@vue/babel-preset-jsx/package.json'
 import { onMounted, ref, watch } from 'vue'
 import type { TransformOptions } from '@babel/core'
 
-import 'normalize.css/normalize.css'
 import 'codemirror/lib/codemirror.css'
 import 'vue-windows/dist/vue-windows.css'
 
@@ -64,8 +59,6 @@ const defaultValue = `
   <h1>Hello World!</h1>
 </div>
 `.trim()
-
-// const { input, mode } = { input: '', mode: '' } //this.$route.query
 
 const result = ref('Loading...')
 const error = ref('')
@@ -78,7 +71,7 @@ const editorOptions = {
   tabSize: 2,
   indentWithTabs: false,
   extraKeys: {
-    Tab: (cm) => {
+    Tab: (cm: any) => {
       cm.replaceSelection(' '.repeat(cm.getOption('tabSize')))
     },
   },
@@ -104,7 +97,6 @@ const transform = async () => {
     result.value = highlight(transformed.code, {
       mode: 'jsx',
     })
-    console.log(result.value)
     error.value = ''
   } catch (err: any) {
     console.error(err)
@@ -126,24 +118,18 @@ body,
 .CodeMirror {
   height: 100%;
 }
-body {
-  margin: 0;
-  font: 14px/1.4 -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Helvetica Neue, sans-serif;
-}
-* {
-  box-sizing: border-box;
-}
-.container {
+
+.header-container {
   max-width: 1080px;
   margin: 0 auto;
   height: 100%;
 }
+
 .header {
   height: 80px;
   background-color: #4fc08d;
   color: white;
-  > .container {
+  > .header-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -207,11 +193,5 @@ body {
 }
 .form-control {
   height: 26px;
-}
-.save-button {
-  background: #eee;
-  border: none;
-  border-radius: 3px;
-  margin-left: 5px;
 }
 </style>
