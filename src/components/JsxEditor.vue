@@ -8,7 +8,7 @@
             {{ version }},
             <a
               target="_blank"
-              href="https://github.com/sodatea/vue-jsx-playground"
+              href="https://github.com/sxzz/vue2-jsx-playground"
             >
               check out source code
             </a>
