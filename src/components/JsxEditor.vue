@@ -44,6 +44,7 @@ import { EditorWindow } from 'vue-windows'
 import highlight from 'cm-highlight'
 // @ts-expect-error
 import CodeMirror from 'vue-cm'
+import { useLocalStorage } from '@vueuse/core'
 import 'codemirror/mode/javascript/javascript'
 import 'codemirror/mode/jsx/jsx'
 import { version as BABEL_VERSION } from '@babel/standalone/package.json'
@@ -60,10 +61,10 @@ const defaultValue = `
 </div>
 `.trim()
 
+const input = useLocalStorage('input', ref('' /* input */ || defaultValue))
 const result = ref('Loading...')
 const error = ref('')
 const mode = ref<'vue' | 'react'>('vue')
-const input = ref('' /* input */ || defaultValue)
 const version = `@babel/standalone@${BABEL_VERSION} & @vue/babel-preset-jsx@${VUE_JSX_VERSION}`
 
 const editorOptions = {
