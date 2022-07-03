@@ -200,8 +200,9 @@ body,
   padding: 0;
   overflow: auto;
   padding: 10px;
-  font-size: 16px;
+  font-size: 12px;
   white-space: pre;
+  font-family: monospace;
 }
 .form-control {
   height: 26px;
