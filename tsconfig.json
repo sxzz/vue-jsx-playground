@@ -1,6 +1,15 @@
 {
   "include": ["src/**/*"],
   "compilerOptions": {
-    "allowJs": false
+    "target": "ES2020",
+    "module": "esnext",
+    "strict": true,
+    "allowJs": false,
+    "moduleResolution": "node",
+    "jsx": "preserve",
+    "resolveJsonModule": true
+  },
+  "vueCompilerOptions": {
+    "target": 2.7
   }
 }
