@@ -1,54 +1,8 @@
-<template>
-  <div ma flex="~ col gap-2" max-w-800px>
-    <select v-model="mode" w-72px border-1px border-rounded self-end>
-      <option value="vue2">Vue 2</option>
-      <option value="vue3">Vue 3</option>
-      <option value="react">React</option>
-    </select>
-
-    <div class="font-mono">
-      <code-mirror
-        v-model="input"
-        mode="jsx"
-        border="1px rounded #ccc"
-        max-h-40vh
-      />
-
-      <p text-center>Output</p>
-
-      <div>
-        <code-mirror
-          v-model="result"
-          readonly
-          mode="jsx"
-          border="1px rounded #ccc"
-          max-h-40vh
-        />
-        <div
-          v-if="error"
-          overflow-auto
-          whitespace-pre
-          text="sm white"
-          bg="red"
-          w-full
-          pl-5
-          max-h-200px
-        >
-          {{ error }}
-        </div>
-      </div>
-    </div>
-  </div>
-</template>
-
 <script lang="ts" setup>
 import { transform as babelTransform } from '@babel/standalone'
 // @ts-expect-error
 import vue2JSXPreset from '@vue/babel-preset-jsx'
 import vue3JSXPlugin from '@vue/babel-plugin-jsx'
-import { useLocalStorage } from '@vueuse/core'
-
-import { ref, watch } from 'vue'
 import { atou, utoa } from '../utils/encode'
 import type { TransformOptions } from '@babel/core'
 
@@ -103,3 +57,46 @@ watch(
   { immediate: true }
 )
 </script>
+
+<template>
+  <div ma flex="~ col gap-2" max-w-800px>
+    <select v-model="mode" w-72px border-1px border-rounded self-end>
+      <option value="vue2">Vue 2</option>
+      <option value="vue3">Vue 3</option>
+      <option value="react">React</option>
+    </select>
+
+    <div class="font-mono">
+      <code-mirror
+        v-model="input"
+        mode="jsx"
+        border="1px rounded #ccc"
+        max-h-40vh
+      />
+
+      <p text-center>Output</p>
+
+      <div>
+        <code-mirror
+          v-model="result"
+          readonly
+          mode="jsx"
+          border="1px rounded #ccc"
+          max-h-40vh
+        />
+        <div
+          v-if="error"
+          overflow-auto
+          whitespace-pre
+          text="sm white"
+          bg="red"
+          w-full
+          pl-5
+          max-h-200px
+        >
+          {{ error }}
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
