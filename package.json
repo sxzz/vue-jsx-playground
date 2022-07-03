@@ -1,11 +1,11 @@
 {
-  "name": "vue-jsx-playground",
+  "name": "vue2-jsx-playground",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint"
   },
   "dependencies": {
     "@babel/standalone": "^7.5.5",
@@ -20,22 +20,19 @@
     "normalize.css": "^8.0.1",
     "nprogress": "^0.2.0",
     "register-service-worker": "^1.6.2",
-    "vue": "^2.6.10",
+    "vue": "^2.7.0",
     "vue-cm": "^1.1.0",
     "vue-router": "^3.0.6",
     "vue-windows": "^0.3.0"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^4.0.0-rc.1",
-    "@vue/cli-plugin-eslint": "^4.0.0-rc.1",
-    "@vue/cli-plugin-pwa": "^4.0.0-rc.1",
-    "@vue/cli-plugin-router": "^4.0.0-rc.1",
-    "@vue/cli-service": "^4.0.0-rc.1",
-    "babel-eslint": "^10.0.1",
+    "@sxzz/eslint-config-prettier": "^2.2.2",
+    "@sxzz/eslint-config-vue2": "^2.2.2",
+    "@vitejs/plugin-vue2": "^1.1.2",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
     "sass": "^1.22.10",
     "sass-loader": "^8.0.0",
-    "vue-template-compiler": "^2.6.10"
+    "vite": "^2.9.13"
   }
 }

@@ -6,20 +6,37 @@
           <h1>
             <router-link to="/">JSX Live Editor</router-link>
           </h1>
-          <h2>{{ version }}, <a target="_blank" href="https://github.com/sodatea/vue-jsx-playground">check out source code</a></h2>
+          <h2>
+            {{ version }},
+            <a
+              target="_blank"
+              href="https://github.com/sodatea/vue-jsx-playground"
+              >check out source code</a
+            >
+          </h2>
         </div>
         <div class="header-right">
-          <select aria-label="Select JSX mode" class="form-control" v-model="mode">
+          <select
+            aria-label="Select JSX mode"
+            class="form-control"
+            v-model="mode"
+          >
             <option value="vue">Vue</option>
             <option value="react">React</option>
           </select>
-          <button class="form-control save-button" @click="saveGist">Save as Gist</button>
+          <button class="form-control save-button" @click="saveGist">
+            Save as Gist
+          </button>
         </div>
       </div>
     </header>
     <div class="editors">
       <editor-window title="input" width="500px" style="margin: 0 20px">
-        <code-mirror class="input" v-model="code" :options="editorOptions"></code-mirror>
+        <code-mirror
+          class="input"
+          v-model="code"
+          :options="editorOptions"
+        ></code-mirror>
       </editor-window>
       <editor-window title="result" width="500px" style="margin: 0 20px">
         <div class="result">
@@ -47,7 +64,7 @@ export default {
   name: 'JSXEditor',
   components: {
     CodeMirror,
-    EditorWindow
+    EditorWindow,
   },
   data() {
     const defaultValue = `
@@ -67,11 +84,11 @@ export default {
         tabSize: 2,
         indentWithTabs: false,
         extraKeys: {
-          Tab: cm => {
+          Tab: (cm) => {
             cm.replaceSelection(' '.repeat(cm.getOption('tabSize')))
-          }
-        }
-      }
+          },
+        },
+      },
     }
   },
   created() {
@@ -91,10 +108,10 @@ export default {
       this.$router.push({
         query: {
           ...this.$route.query,
-          mode: this.mode
-        }
+          mode: this.mode,
+        },
       })
-    }
+    },
   },
   methods: {
     async transform() {
@@ -102,11 +119,11 @@ export default {
       try {
         const [babel, vueJSXPreset] = await Promise.all([
           import('@babel/standalone'),
-          import('@vue/babel-preset-jsx')
+          import('@vue/babel-preset-jsx').then((r) => r.default),
         ])
         const transformOptions = {
           presets: [],
-          plugins: []
+          plugins: [],
         }
         if (this.mode === 'vue') {
           transformOptions.presets.push(vueJSXPreset)
@@ -115,39 +132,40 @@ export default {
         }
         const result = babel.transform(code, transformOptions)
         this.result = highlight(result.code, {
-          mode: 'jsx'
+          mode: 'jsx',
         })
         this.error = null
       } catch (err) {
+        console.error(err)
         this.error = err.message
       }
     },
     async saveGist() {
-      progress.start()
-      const res = await axios.post(`https://api.github.com/gists?access_token=${process.env.APP_GH_TOKEN}`, {
-        description: 'Saved by https://jsx.egoist.sh',
-        files: {
-          [`${this.mode}.jsx`]: {
-            content: this.code
-          }
-        }
-      })
-      this.$router.push(`/gist/${res.data.id}`)
-      progress.done()
+      // progress.start()
+      // const res = await axios.post(`https://api.github.com/gists?access_token=${process.env.APP_GH_TOKEN}`, {
+      //   description: 'Saved by https://jsx.egoist.sh',
+      //   files: {
+      //     [`${this.mode}.jsx`]: {
+      //       content: this.code
+      //     }
+      //   }
+      // })
+      // this.$router.push(`/gist/${res.data.id}`)
+      // progress.done()
     },
     async fetchGist(id) {
-      progress.start()
-      const { data } = await axios.get(`https://api.github.com/gists/${id}?access_token=${process.env.APP_GH_TOKEN}`)
-      if (data.files['vue.jsx']) {
-        this.mode = 'vue'
-        this.code = data.files['vue.jsx'].content
-      } else if (data.files['react.jsx']) {
-        this.mode = 'react',
-        this.code = data.files['react.jsx'].content
-      }
-      progress.done()
-    }
-  }
+      // progress.start()
+      // const { data } = await axios.get(`https://api.github.com/gists/${id}?access_token=${process.env.APP_GH_TOKEN}`)
+      // if (data.files['vue.jsx']) {
+      //   this.mode = 'vue'
+      //   this.code = data.files['vue.jsx'].content
+      // } else if (data.files['react.jsx']) {
+      //   this.mode = 'react',
+      //   this.code = data.files['react.jsx'].content
+      // }
+      // progress.done()
+    },
+  },
 }
 </script>
 
@@ -157,12 +175,16 @@ export default {
 <style src="nprogress/nprogress.css"></style>
 
 <style lang="scss">
-html, body, #app, .CodeMirror {
+html,
+body,
+#app,
+.CodeMirror {
   height: 100%;
 }
 body {
   margin: 0;
-  font: 14px/1.4 -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Helvetica Neue,sans-serif;
+  font: 14px/1.4 -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Helvetica Neue, sans-serif;
 }
 * {
   box-sizing: border-box;
@@ -176,7 +198,7 @@ body {
   height: 80px;
   background-color: #4fc08d;
   color: white;
-  >.container {
+  > .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
