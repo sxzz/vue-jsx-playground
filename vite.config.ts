@@ -8,6 +8,7 @@ export default defineConfig({
   resolve: {
     alias: {
       assert: 'browser-assert',
+      path: 'path-browserify',
     },
   },
   define: {
