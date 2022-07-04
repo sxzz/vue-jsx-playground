@@ -31,4 +31,7 @@ export default defineConfig({
     }),
     UnoCSS(),
   ],
+  optimizeDeps: {
+    exclude: ['@swc/wasm-web'],
+  },
 })

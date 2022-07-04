@@ -4,6 +4,7 @@ specifiers:
   '@babel/plugin-transform-typescript': ^7.18.6
   '@babel/standalone': ^7.5.5
   '@iconify-json/carbon': ^1.1.6
+  '@swc/wasm-web': ^1.2.208
   '@sxzz/eslint-config-prettier': ^2.2.2
   '@sxzz/eslint-config-vue': ^2.2.2
   '@types/babel__core': ^7.1.19
@@ -31,6 +32,7 @@ specifiers:
 dependencies:
   '@babel/plugin-transform-typescript': 7.18.6
   '@babel/standalone': 7.18.7
+  '@swc/wasm-web': 1.2.208
   '@vue/babel-plugin-jsx': 1.1.1
   '@vue/babel-preset-jsx': 1.2.4
   '@vueuse/core': 8.7.5_vue@3.2.37
@@ -480,6 +482,10 @@ packages:
       estree-walker: 2.0.2
       picomatch: 2.3.1
     dev: true
+
+  /@swc/wasm-web/1.2.208:
+    resolution: {integrity: sha512-XKaKyy3fwUPwQHw3hRdEEyoCln39woJqeB6Ajb5lwmsWj9itYH3o4DYjMNRuU9yKcQUWHM+34I8zHChtGMV5cw==}
+    dev: false
 
   /@sxzz/eslint-config-basic/2.2.2_eewxtjj33uq4o73zpcjsegq3l4:
     resolution: {integrity: sha512-9JW+HuIDpki+wuY1chNT5xkVvz/FtDksE6CQ0fVpKax9GA2LW3LGpZu54zmbWyIJkxiX36LRw3cksWDUupAnqA==}
