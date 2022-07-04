@@ -66,13 +66,8 @@ watch(
       <option value="react">React</option>
     </select>
 
-    <div class="font-mono">
-      <code-mirror
-        v-model="input"
-        mode="jsx"
-        border="1px rounded #ccc"
-        max-h-40vh
-      />
+    <div font-mono flex="~ col gap-2">
+      <code-mirror v-model="input" mode="jsx" border="1px rounded #ccc" />
 
       <p text-center>Output</p>
 
@@ -80,9 +75,8 @@ watch(
         <code-mirror
           v-model="result"
           readonly
-          mode="jsx"
+          mode="javascript"
           border="1px rounded #ccc"
-          max-h-40vh
         />
         <div
           v-if="error"

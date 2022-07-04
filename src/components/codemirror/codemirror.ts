@@ -1,5 +1,5 @@
 import CodeMirror from 'codemirror'
-import './codemirror.css'
+import 'codemirror/lib/codemirror.css'
 
 // modes
 import 'codemirror/mode/javascript/javascript.js'
@@ -14,5 +14,8 @@ import 'codemirror/addon/fold/foldgutter.js'
 import 'codemirror/addon/fold/brace-fold.js'
 import 'codemirror/addon/fold/indent-fold.js'
 import 'codemirror/addon/fold/comment-fold.js'
+
+// theme
+import 'codemirror/theme/monokai.css'
 
 export default CodeMirror

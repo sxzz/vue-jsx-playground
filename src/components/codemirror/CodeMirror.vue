@@ -1,9 +1,8 @@
 <template>
-  <div ref="el" class="editor"></div>
+  <div ref="el" class="editor" />
 </template>
 
 <script setup lang="ts">
-import { useEventListener } from '@vueuse/core'
 import { onMounted, ref, watchEffect } from 'vue'
 import CodeMirror from './codemirror'
 
@@ -55,23 +54,8 @@ onMounted(() => {
     editor.setOption('mode', props.mode)
   })
 
-  setTimeout(() => {
-    editor.refresh()
-  }, 50)
-  useEventListener('resize', () => editor.refresh())
+  watchEffect(() => {
+    editor.setOption('theme', isDark.value ? 'monokai' : 'default')
+  })
 })
 </script>
-
-<style>
-.editor {
-  position: relative;
-  height: 100%;
-  width: 100%;
-  overflow: scroll;
-}
-
-.CodeMirror {
-  line-height: 1.5;
-  height: 100% !important;
-}
-</style>
