@@ -18,6 +18,7 @@ const error = ref('')
 const mode = useLocalStorage('mode', ref<'vue2' | 'vue3' | 'react'>('vue3'), {
   listenToStorageChanges: false,
 })
+const typescript = useLocalStorage('typescript', false)
 
 if (location.hash) {
   input.value = atou(location.hash.slice(1))
@@ -39,6 +40,13 @@ const transform = async () => {
     } else if (mode.value === 'react') {
       transformOptions.presets!.push('react')
     }
+    if (typescript.value) {
+      // @ts-expect-error
+      const ts = await import('@babel/plugin-transform-typescript').then(
+        (m) => m.default
+      )
+      transformOptions.plugins!.push([ts, { isTSX: true }])
+    }
     const transformed = babelTransform(input.value, transformOptions)
     result.value = transformed.code!
     error.value = ''
@@ -48,23 +56,23 @@ const transform = async () => {
   }
 }
 
-watch(
-  [input, mode],
-  () => {
-    transform()
-    location.hash = utoa(input.value)
-  },
-  { immediate: true }
-)
+watchEffect(() => {
+  transform()
+  location.hash = utoa(input.value)
+})
 </script>
 
 <template>
   <div ma flex="~ col gap-2" max-w-800px>
-    <select v-model="mode" w-72px border-1px border-rounded self-end>
-      <option value="vue2">Vue 2</option>
-      <option value="vue3">Vue 3</option>
-      <option value="react">React</option>
-    </select>
+    <div flex="~ gap-2" justify-end>
+      <select v-model="mode" w-72px border-1px border-rounded self-end>
+        <option value="vue2">Vue 2</option>
+        <option value="vue3">Vue 3</option>
+        <option value="react">React</option>
+      </select>
+
+      <label><input v-model="typescript" type="checkbox" /> TypeScript</label>
+    </div>
 
     <div font-mono flex="~ col gap-2">
       <code-mirror v-model="input" mode="jsx" border="1px rounded #ccc" />

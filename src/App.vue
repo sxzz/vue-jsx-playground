@@ -1,6 +1,6 @@
 <template>
   <main font-sans p="x-4 y-10" text="gray-700 dark:gray-200">
-    <app-header />
+    <app-header mb-2 />
     <jsx-editor />
     <app-footer />
   </main>
