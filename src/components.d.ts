@@ -12,5 +12,4 @@ declare module '@vue/runtime-core' {
     CodeMirror: typeof import('./components/codemirror/CodeMirror.vue')['default']
     JsxEditor: typeof import('./components/jsx-editor.vue')['default']
   }
-
 }
