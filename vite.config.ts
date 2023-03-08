@@ -1,3 +1,4 @@
+import path from 'node:path'
 import { defineConfig } from 'vite'
 import Vue from '@vitejs/plugin-vue'
 import Components from 'unplugin-vue-components/vite'
@@ -9,6 +10,7 @@ export default defineConfig({
     alias: {
       assert: 'browser-assert',
       path: 'path-browserify',
+      '@babel/highlight': path.resolve(__dirname, './empty-module.js'),
     },
   },
   define: {
