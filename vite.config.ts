@@ -4,6 +4,7 @@ import Vue from '@vitejs/plugin-vue'
 import Components from 'unplugin-vue-components/vite'
 import AutoImport from 'unplugin-auto-import/vite'
 import UnoCSS from 'unocss/vite'
+import VueMacros from 'unplugin-vue-macros/vite'
 
 export default defineConfig({
   resolve: {
@@ -19,8 +20,10 @@ export default defineConfig({
     'Buffer.isBuffer': 'undefined',
   },
   plugins: [
-    Vue({
-      reactivityTransform: true,
+    VueMacros({
+      plugins: {
+        vue: Vue(),
+      },
     }),
     Components({
       dts: './src/components.d.ts',

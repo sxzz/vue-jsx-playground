@@ -37,6 +37,7 @@
     "unocss": "^0.50.4",
     "unplugin-auto-import": "^0.15.1",
     "unplugin-vue-components": "^0.24.1",
+    "unplugin-vue-macros": "^1.9.1",
     "vite": "^4.1.4"
   },
   "pnpm": {
