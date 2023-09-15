@@ -19,6 +19,9 @@ export default defineConfig({
     'process.platform': '"darwin"',
     'Buffer.isBuffer': 'undefined',
   },
+  build: {
+    minify: 'terser',
+  },
   plugins: [
     VueMacros({
       plugins: {

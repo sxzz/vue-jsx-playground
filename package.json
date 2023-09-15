@@ -35,6 +35,7 @@
     "@vitejs/plugin-vue": "^4.3.4",
     "@vue/runtime-core": "^3.3.4",
     "eslint": "^8.49.0",
+    "terser": "^5.19.4",
     "unocss": "^0.55.7",
     "unplugin-auto-import": "^0.16.6",
     "unplugin-vue-components": "^0.25.2",
