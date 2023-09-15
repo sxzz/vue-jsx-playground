@@ -1,6 +1,6 @@
 <script lang="ts" setup>
+import { type TransformOptions } from '@babel/core'
 import { atou, utoa } from '../utils/encode'
-import type { TransformOptions } from '@babel/core'
 
 const defaultValue = `
 <div id="welcome">
@@ -85,10 +85,10 @@ const transform = async () => {
       result.value = await transformSwc()
     }
     error.value = ''
-  } catch (err: any) {
+  } catch (error_: any) {
     result.value = 'Error'
-    console.error(err)
-    error.value = err.toString()
+    console.error(error_)
+    error.value = error_.toString()
   }
 }
 
@@ -101,7 +101,7 @@ watchEffect(() => {
 <template>
   <div ma flex="~ col gap-2" max-w-800px>
     <div flex="~ gap-2" justify-end>
-      <select v-model="mode" w-140px border-1px border-rounded self-end>
+      <select v-model="mode" w-140px self-end border-1px border-rounded>
         <option value="vue2-babel">Vue 2 (Babel)</option>
         <!-- <option value="vue2-swc">Vue 2 (SWC)</option> -->
         <option value="vue3-babel">Vue 3</option>
@@ -126,13 +126,13 @@ watchEffect(() => {
         />
         <div
           v-if="error"
-          overflow-auto
-          whitespace-pre
           text="sm white"
           bg="red"
-          w-full
-          pl-5
           max-h-200px
+          w-full
+          overflow-auto
+          whitespace-pre
+          pl-5
         >
           {{ error }}
         </div>

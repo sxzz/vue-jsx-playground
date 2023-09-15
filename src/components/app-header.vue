@@ -6,7 +6,7 @@ import { version as VUE3_JSX_VERSION } from '@vue/babel-plugin-jsx/package.json'
 
 <template>
   <div text-center>
-    <div i-carbon-automatic text-4xl inline-block />
+    <div i-carbon-automatic inline-block text-4xl />
     <p>
       <a href="https://vue-jsx.sxzz.moe">Vue JSX Playground</a>
     </p>

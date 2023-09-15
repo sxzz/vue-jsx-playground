@@ -1,6 +1,6 @@
 <template>
   <footer text-center>
-    <nav text-xl mt-6 inline-flex gap-2>
+    <nav mt-6 inline-flex gap-2 text-xl>
       <button class="icon-btn !outline-none" @click="toggleDark()">
         <div i-carbon-sun dark:i-carbon-moon />
       </button>

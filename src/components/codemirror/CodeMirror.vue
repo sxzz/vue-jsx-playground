@@ -1,10 +1,6 @@
-<template>
-  <div ref="el" class="editor" />
-</template>
-
 <script setup lang="ts">
 import { onMounted, ref, watchEffect } from 'vue'
-import CodeMirror from './codemirror'
+import { CodeMirror } from './codemirror'
 
 export interface Props {
   modelValue: string
@@ -59,3 +55,7 @@ onMounted(() => {
   })
 })
 </script>
+
+<template>
+  <div ref="el" class="editor" />
+</template>

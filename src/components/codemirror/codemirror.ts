@@ -18,4 +18,4 @@ import 'codemirror/addon/fold/comment-fold.js'
 // theme
 import 'codemirror/theme/monokai.css'
 
-export default CodeMirror
+export { CodeMirror }
