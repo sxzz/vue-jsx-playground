@@ -1,0 +1,11 @@
+{
+  "extends": ["github>sxzz/renovate-config"],
+  "includeForks": true,
+  "packageRules": [
+    {
+      "matchPackageNames": ["codemirror"],
+      "matchUpdateTypes": ["major"],
+      "enabled": false
+    }
+  ]
+}
