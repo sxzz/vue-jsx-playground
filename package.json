@@ -8,7 +8,8 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "typecheck": "vue-tsc --noEmit"
   },
   "dependencies": {
     "@babel/plugin-transform-typescript": "^7.24.6",
@@ -37,12 +38,14 @@
     "@vue/runtime-core": "^3.4.27",
     "eslint": "^9.4.0",
     "terser": "^5.31.0",
+    "typescript": "^5.4.5",
     "unenv": "^1.9.0",
     "unocss": "^0.60.4",
     "unplugin-auto-import": "^0.17.6",
     "unplugin-vue-components": "^0.27.0",
     "unplugin-vue-macros": "^2.9.3",
-    "vite": "^5.2.12"
+    "vite": "^5.2.12",
+    "vue-tsc": "^2.0.19"
   },
   "pnpm": {
     "peerDependencyRules": {
