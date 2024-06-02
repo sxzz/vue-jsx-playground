@@ -1,15 +1,18 @@
 {
-  "include": ["src/**/*"],
   "compilerOptions": {
     "target": "esnext",
-    "module": "esnext",
     "lib": ["ES2022", "DOM", "DOM.Iterable"],
-    "strict": true,
-    "allowJs": false,
-    "moduleResolution": "node",
-    "jsx": "preserve",
+    "moduleDetection": "force",
+    "module": "preserve",
+    "moduleResolution": "bundler",
     "resolveJsonModule": true,
-    "allowSyntheticDefaultImports": true,
+    "types": [],
+    "strict": true,
+    "noUnusedLocals": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "isolatedModules": true,
     "skipLibCheck": true
-  }
+  },
+  "include": ["src"]
 }
