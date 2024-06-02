@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { type TransformOptions } from '@babel/core'
 import { atou, utoa } from '../utils/encode'
+import type { TransformOptions } from '@babel/core'
 
 const defaultValue = `
 <div id="welcome">
@@ -35,7 +35,7 @@ const transformBabel = async () => {
   if (mode.value === 'vue2-babel') {
     // @ts-expect-error
     const vue2JSXPreset = await import('@vue/babel-preset-jsx').then(
-      (m) => m.default
+      (m) => m.default,
     )
     transformOptions.presets!.push(vue2JSXPreset)
   } else if (mode.value === 'vue3-babel') {
@@ -47,7 +47,7 @@ const transformBabel = async () => {
   if (typescript.value) {
     // @ts-expect-error
     const ts = await import('@babel/plugin-transform-typescript').then(
-      (m) => m.default
+      (m) => m.default,
     )
     transformOptions.plugins!.push([ts, { isTSX: true }])
   }
