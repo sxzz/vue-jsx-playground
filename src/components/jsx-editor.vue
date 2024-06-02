@@ -3,9 +3,13 @@ import { atou, utoa } from '../utils/encode'
 import type { TransformOptions } from '@babel/core'
 
 const defaultValue = `
-<div id="welcome">
-  <h1>Hello World!</h1>
-</div>
+export default function Comp() {
+  return (
+    <div id="welcome">
+      <h1>Hello World!</h1>
+    </div>
+  )
+}
 `.trim()
 
 const input = ref(defaultValue)
@@ -103,8 +107,7 @@ watchEffect(() => {
     <div flex="~ gap-2" justify-end>
       <select v-model="mode" w-140px self-end border-1px border-rounded>
         <option value="vue2-babel">Vue 2 (Babel)</option>
-        <!-- <option value="vue2-swc">Vue 2 (SWC)</option> -->
-        <option value="vue3-babel">Vue 3</option>
+        <option value="vue3-babel">Vue 3 (Babel)</option>
         <option value="react-babel">React (Babel)</option>
         <option value="react-swc">React (SWC)</option>
       </select>
