@@ -27,7 +27,7 @@
   },
   "devDependencies": {
     "@iconify-json/carbon": "^1.1.34",
-    "@sxzz/eslint-config": "^3.11.0",
+    "@sxzz/eslint-config": "^4.4.0",
     "@sxzz/prettier-config": "^2.0.2",
     "@types/babel__core": "^7.20.5",
     "@types/babel__standalone": "^7.1.7",
