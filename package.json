@@ -44,7 +44,7 @@
     "unplugin-auto-import": "^0.17.6",
     "unplugin-vue-components": "^0.27.0",
     "unplugin-vue-macros": "^2.9.3",
-    "vite": "^5.2.12",
+    "vite": "^6.3.5",
     "vue-tsc": "^2.0.19"
   },
   "pnpm": {
