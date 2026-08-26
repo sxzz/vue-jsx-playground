@@ -32,7 +32,7 @@
     "@types/babel__core": "^7.20.5",
     "@types/babel__standalone": "^7.1.7",
     "@types/codemirror": "^5.60.15",
-    "@types/node": "^20.14.0",
+    "@types/node": "^24.0.0",
     "@unocss/reset": "^0.60.4",
     "@vitejs/plugin-vue": "^5.0.5",
     "@vue/runtime-core": "^3.4.27",
