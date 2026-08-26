@@ -22,7 +22,7 @@
     "babel-plugin-transform-vue-jsx": "^3.7.0",
     "browser-assert": "^1.2.1",
     "codemirror": "^5.65.16",
-    "pathe": "^1.1.2",
+    "pathe": "^2.0.0",
     "vue": "^3.4.27"
   },
   "devDependencies": {
