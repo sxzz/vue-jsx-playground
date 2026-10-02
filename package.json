@@ -36,7 +36,7 @@
     "@unocss/reset": "^0.60.4",
     "@vitejs/plugin-vue": "^5.0.5",
     "@vue/runtime-core": "^3.4.27",
-    "eslint": "^9.4.0",
+    "eslint": "^10.0.0",
     "terser": "^5.31.0",
     "typescript": "^5.4.5",
     "unenv": "^1.9.0",
