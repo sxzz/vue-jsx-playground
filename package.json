@@ -41,7 +41,7 @@
     "typescript": "^5.4.5",
     "unenv": "^1.9.0",
     "unocss": "^0.60.4",
-    "unplugin-auto-import": "^0.17.6",
+    "unplugin-auto-import": "^21.0.0",
     "unplugin-vue-components": "^0.27.0",
     "unplugin-vue-macros": "^2.9.3",
     "vite": "^5.2.12",
